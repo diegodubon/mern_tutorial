@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import { BrowserRouter as Router, Route } from 'react-router-dom'
-import Register from './register'
+
+import { Link } from 'react-router-dom'
 class Landing extends Component {
   constructor (props) {
     super(props)
@@ -22,16 +22,10 @@ class Landing extends Component {
                 </p>
                 <hr />
 
-                <Router>
-                  <div>
-                    <a href='/register' class='btn btn-lg btn-info mr-2'>
-                      Sign Up
-                    </a>
-                    <a href='/login' class='btn btn-lg btn-light'>Login</a>
-                    <Route exact path='/register' component={Register} />
-                    {/* <Route path='/login' component={Login} /> */}
-                  </div>
-                </Router>
+                <Link to='/register' class='btn btn-lg btn-info mr-2'>
+                  Sign Up
+                </Link>
+                <Link to='/login' class='btn btn-lg btn-light'>Login</Link>
 
               </div>
             </div>

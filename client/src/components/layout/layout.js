@@ -1,7 +1,13 @@
 import React, { Component } from 'react'
-import NavBar from './navbar'
-import Landing from './landing'
-import Footer from './footer'
+
+import { BrowserRouter as Router, Route } from 'react-router-dom'
+
+import NavBar from './Navbar'
+import Landing from './Landing'
+import Footer from './Footer'
+
+import Login from '../auth/Login'
+import Register from '../auth/Register'
 class Layout extends Component {
   constructor (props) {
     super(props)
@@ -11,11 +17,17 @@ class Layout extends Component {
   }
   render () {
     return (
-      <div className='App'>
-        <NavBar />
-        <Landing />
-        <Footer env={this.state.env} />
-      </div>
+      <Router>
+        <div className='App'>
+          <NavBar />
+          <Route exact path='/' component={Landing} />
+          <div className='container'>
+            <Route exact path='/register' component={Register} />
+            <Route exact path='/login' component={Login} />
+          </div>
+          <Footer env={this.state.env} />
+        </div>
+      </Router>
     )
   }
 }
