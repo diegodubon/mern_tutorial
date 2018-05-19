@@ -18,7 +18,7 @@ class Landing extends Component {
                 </h1>
                 <p className='lead'>
                   {' '}
-                  Create a developer profile/portfolio, and admin all Lms Products
+                  {/* Create a developer profile/portfolio, and admin all Lms Products */}
                 </p>
                 <hr />
 

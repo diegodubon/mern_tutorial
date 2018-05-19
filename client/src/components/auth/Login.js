@@ -9,7 +9,7 @@ export default class Login extends Component {
             <div class='col-md-8 m-auto'>
               <h1 class='display-4 text-center'>Log In</h1>
               <p class='lead text-center'>
-                Sign in to your DevConnector account
+                Sign in to your account
               </p>
               <form action='dashboard.html'>
                 <div class='form-group'>

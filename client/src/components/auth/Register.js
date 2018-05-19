@@ -13,7 +13,7 @@ class Register extends Component {
             <div className='col-md-8 m-auto'>
               <h1 className='display-4 text-center'>Sign Up</h1>
               <p className='lead text-center'>
-                Create your DevConnector account
+                Create your account
               </p>
               <form action='create-profile.html'>
                 <div className='form-group'>
@@ -33,7 +33,7 @@ class Register extends Component {
                     name='email'
                   />
                   <small className='form-text text-muted'>
-                    This site uses Gravatar so if you want a profile image, use a Gravatar email
+                    {/* This site uses Gravatar so if you want a profile image, use a Gravatar email */}
                   </small>
                 </div>
                 <div className='form-group'>
