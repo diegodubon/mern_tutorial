@@ -1,8 +1,10 @@
 import React, { Component } from 'react'
 
+
 import { Link } from 'react-router-dom'
+
 class NavBar extends Component {
-  render () {
+  render() {
     return (
       <nav className='navbar navbar-expand-sm navbar-dark bg-dark mb-4'>
         <div className='container'>
@@ -22,6 +24,25 @@ class NavBar extends Component {
                 <Link className='nav-link' to='/profiles'>
                   {' '}Developers
                 </Link>
+              </li>
+
+              <li className='nav-item'>
+
+                <Link className='nav-link dropdown-toggle' data-toggle="dropdown" to='/'>
+                  {' '}Apps
+                </Link>
+
+                <div className="dropdown">
+                  <div className="dropdown-menu">
+                    <Link className='dropdown-item' to='/rtn'>
+                      {' '}Real Time Notifications
+                    </Link>
+                    <Link className='dropdown-item' to='/laureateProctor'>
+                      {' '}Laureate Proctor
+                   </Link>
+
+                  </div>
+                </div>
               </li>
             </ul>
 

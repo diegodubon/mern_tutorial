@@ -5,7 +5,7 @@ import { BrowserRouter as Router, Route } from 'react-router-dom'
 import NavBar from './Navbar'
 import Landing from './Landing'
 import Footer from './Footer'
-
+import Rtn from '../apps/Rtn'
 import Login from '../auth/Login'
 import Register from '../auth/Register'
 class Layout extends Component {
@@ -22,8 +22,10 @@ class Layout extends Component {
           <NavBar />
           <Route exact path='/' component={Landing} />
           <div className='container'>
+          
             <Route exact path='/register' component={Register} />
             <Route exact path='/login' component={Login} />
+            <Route exact path='/rtn' component={Rtn} />
           </div>
           <Footer env={this.state.env} />
         </div>
@@ -33,3 +35,5 @@ class Layout extends Component {
 }
 
 export default Layout
+
+
