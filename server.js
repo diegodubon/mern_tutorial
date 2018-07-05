@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const dotenv = require("dotenv").config();
 const passport = require("passport");
 const bodyParser = require("body-parser");
-
+var morgan = require('morgan')
 //routes
 const users = require("./routes/api/users");
 const posts = require("./routes/api/posts");
@@ -25,6 +25,8 @@ app.use(passport.initialize());
 //passport config
 require("./config/passport")(passport);
 
+//Logger morgan
+app.use(morgan('dev'))
 //body parser middleware
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());

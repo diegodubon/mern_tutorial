@@ -13,9 +13,7 @@ const passport = require("passport");
 const SECRET = process.env.SECRET;
 // Load User model
 const User = require("../../models/User");
-//@route    GET api/users/test
-//@desc     Test users route
-//@access   Public
+
 router.get("/test", (req, res) =>
   res.json({
     message: "users works"
@@ -23,6 +21,7 @@ router.get("/test", (req, res) =>
 );
 
 router.post("/register", (req, res) => {
+  console.log('\x1b[36m%s\x1b[0m', 'I am cyan');
   const { errors, isValid } = validateRegisterInput(req.body);
   // check validation
   if (!isValid) {
@@ -30,7 +29,8 @@ router.post("/register", (req, res) => {
   }
   User.findOne({ email: req.body.email }).then(user => {
     if (user) {
-      return res.status(400).json({ message: "Email already exist" });
+      errors.email = "Email already exist";
+      return res.status(400).json(errors);
     } else {
       const avatar = gravatar.url(req.body.email, {
         s: "200", //size
