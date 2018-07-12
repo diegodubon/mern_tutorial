@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 // import logo from './logo.svg'
-import Layout from './components/layout/Layout' 
+import Layout from './components/layout/Layout'
 import './App.css'
 let ENV = 'development'
 
@@ -13,6 +13,5 @@ class App extends Component {
     )
   }
 }
-
 
 export default App
