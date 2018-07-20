@@ -18,7 +18,7 @@ function info (func, message) {
   message = message || ''
   let level = 'INFO'
   let date = new Date().toLocaleTimeString()
-  console.log(chalk.white(`${date} | ${level} | ${func} |  ${message}`))
+  console.log(chalk.green(`${date} | ${level} | ${func} |  ${message}`))
 }
 
 function error (func, message) {
