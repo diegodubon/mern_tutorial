@@ -16,22 +16,8 @@ const SECRET = process.env.SECRET;
 // Load User model
 const User = require("../../models/User");
 
-router.get("/test", (req, res) =>
-  res.json({
-    message: "users works"
-  })
-);
-
-router.get("/testUsers", (req, res) => {
-  req.db
-    .collection("users")
-    .find({})
-    .toArray()
-    .then(r => res.json(r));
-});
-
-router.post("/register", (req, res) => {
-  const { errors, isValid } = validateRegisterInput(req.body);
+router.post('/register', (req, res) => {
+  const { errors, isValid } = validateRegisterInput(req.body)
   // check validation
   if (!isValid) {
     return res.status(400).json(errors);
@@ -85,10 +71,8 @@ router.post("/login", (req, res) => {
   // Find User by Email
   User.findOne({ email }).then(user => {
     if (!user) {
-      return res.status(404).json({
-        message: "User not found",
-        code: 404
-      });
+      errors.email = 'User not found'
+      return res.status(404).json(errors)
     }
     // check password
     bcrypt.compare(password, user.password).then(isMatch => {
