@@ -1,6 +1,9 @@
 import React, { Component } from "react";
 
-import axios from "axios";
+import { connect } from "react-redux";
+import { registerUser } from "../../actions/authActions";
+import PropTypes from "prop-types";
+import { withRouter } from "react-router-dom";
 import classnames from "classnames";
 class Register extends Component {
   constructor() {
@@ -17,6 +20,12 @@ class Register extends Component {
     this.onSubmit = this.onSubmit.bind(this);
   }
 
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.errors) {
+      this.setState({ errors: nextProps.errors });
+    }
+  }
+
   onChange(e) {
     this.setState({ [e.target.name]: e.target.value });
   }
@@ -31,19 +40,14 @@ class Register extends Component {
     };
     console.log("user", user);
 
-    axios
-      .post("/api/users/register", user)
-      .then(res => console.log(res.data))
-      .catch(err => {
-        console.log(err.response.data)
-        this.setState({ errors: err.response.data });
-      });
+    this.props.registerUser(user, this.props.history);
   }
   render() {
     const { errors } = this.state;
-
+    const { user } = this.props.auth;
     return (
       <div className="register">
+    
         <div className="container">
           <div className="row">
             <div className="col-md-8 m-auto">
@@ -76,7 +80,7 @@ class Register extends Component {
                     value={this.state.email}
                     onChange={this.onChange}
                   />
-                   {errors.email && (
+                  {errors.email && (
                     <div className="invalid-feedback">{errors.email}</div>
                   )}
                   <small className="form-text text-muted">
@@ -109,7 +113,7 @@ class Register extends Component {
                     value={this.state.password2}
                     onChange={this.onChange}
                   />
-                     {errors.password2 && (
+                  {errors.password2 && (
                     <div className="invalid-feedback">{errors.password2}</div>
                   )}
                 </div>
@@ -123,4 +127,15 @@ class Register extends Component {
   }
 }
 
-export default Register;
+Register.propsTypes = {
+  registerUser: PropTypes.func.isRequired,
+  auth: PropTypes.object.isRequired
+};
+const mapStateToProps = state => ({
+  auth: state.auth,
+  errors: state.errors
+});
+export default connect(
+  mapStateToProps,
+  { registerUser }
+)(withRouter(Register));
