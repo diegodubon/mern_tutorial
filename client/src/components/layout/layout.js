@@ -12,13 +12,22 @@ import Footer from "./Footer";
 import Rtn from "../apps/Rtn";
 import Login from "../auth/Login";
 import Register from "../auth/Register";
-import { setCurrentUser } from "../../actions/authActions";
+import { setCurrentUser, loginUser } from "../../actions/authActions";
 
 if (localStorage.jwt_decode) {
   setAuthToken(localStorage.jwt_decode);
   //get user info
   const decoded = jwt_decode(localStorage.jwt_decode);
   store.dispatch(setCurrentUser(decoded));
+
+  //check expired token
+
+  const currentTime = Date.now() / 1000;
+  if (decoded.exp < currentTime) {
+    store.dispatch(loginUser());
+
+    window.location.href = "/login";
+  }
 }
 class Layout extends Component {
   constructor(props) {
@@ -27,6 +36,7 @@ class Layout extends Component {
       env: props.env
     };
   }
+  
   render() {
     return (
       <Provider store={store}>
