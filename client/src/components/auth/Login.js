@@ -1,14 +1,10 @@
 import React, { Component } from "react";
-import axios from "axios";
 
 import { connect } from "react-redux";
 import { loginUser } from "../../actions/authActions";
 import PropTypes from "prop-types";
 import { withRouter } from "react-router-dom";
-
 import TextFieldGroup from "../common/TextFieldGroup";
-
-import classnames from "classnames";
 class Login extends Component {
   constructor() {
     super();
@@ -28,7 +24,7 @@ class Login extends Component {
     }
   }
   componentWillReceiveProps(nextProps) {
-    console.log("nextProps", nextProps);
+   
     if (nextProps.auth.isAuthenticated) {
       this.props.history.push("/");
     }

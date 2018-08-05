@@ -9,8 +9,8 @@ class Footer extends Component {
   }
   render () {
     return (
-      <footer className='bg-dark text-white mt-5 p-4 text-center fixed-bottom'>
-        Copyright © {new Date().getFullYear()} Lms Dev portal
+      <footer className='bg-dark text-white mt-5 p-4 text-center absolute-bottom'>
+        Copyright © {new Date().getFullYear()} Lms Dev Portal
       </footer>
     )
   }

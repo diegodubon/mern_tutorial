@@ -18,7 +18,7 @@ class Landing extends Component {
           <div className="container">
             <div className="row">
               <div className="col-md-12 text-center">
-                <h1 className="display-3 mb-4">Dev Lms</h1>
+                <h1 className="display-3 mb-4">Lms Dev Portal</h1>
                 <p className="lead">
                   {" "}
                   {/* Create a developer profile/portfolio, and admin all Lms Products */}

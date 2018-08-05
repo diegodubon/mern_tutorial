@@ -4,8 +4,6 @@ import { connect } from "react-redux";
 import { registerUser } from "../../actions/authActions";
 import PropTypes from "prop-types";
 import { withRouter } from "react-router-dom";
-import classnames from "classnames";
-
 import TextFieldGroup from "../common/TextFieldGroup";
 
 class Register extends Component {
@@ -51,7 +49,7 @@ class Register extends Component {
   }
   render() {
     const { errors } = this.state;
-    const { user } = this.props.auth;
+
     return (
       <div className="register">
         <div className="container">

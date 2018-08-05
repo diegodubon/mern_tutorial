@@ -1,46 +1,39 @@
-// REGISTER
+// Profile
 import axios from "axios";
-import setAuthToken from "../utils/setAuthToken";
-import jwt_decode from "jwt-decode";
-import { GET_PROFILE, GET_PROFILE, GET_ERRORS } from "./types";
-export const registerUser = (userData, history) => dispatch => {
+import {
+  GET_PROFILE,
+  PROFILE_LOADING,
+  CLEAR_CURRENT_PROFILE,
+  GET_ERRORS
+} from "./types";
+
+//GET CURRENT PROFILE
+
+export const getCurrentProfile = () => dispatch => {
+  dispatch(setProfileLoading());
   axios
-    .post("/api/users/register", userData)
-    .then(res => history.push("/login"))
-    .catch(err => dispatch({ type: GET_ERRORS, payload: err.response.data }));
+    .get("/api/profile")
+    .then(res => dispatch({ type: GET_PROFILE, payload: res.data }))
+    .catch(error => dispatch({ type: GET_PROFILE, payload: {} }));
 };
 
-export const loginUser = userData => dispatch => {
-  axios
-    .post("/api/users/login", userData)
-    .then(res => {
-      const { token } = res.data;
-      //set token to localstorage
-      localStorage.setItem("jwtToken", token);
-      //set token to auth header
-      setAuthToken(token);
-
-      const decoded = jwt_decode(token);
-      dispatch(setCurrentUser(decoded));
-    })
-    .catch(err => dispatch({ type: GET_ERRORS, payload: err.response.data }));
-};
-
-export const setCurrentUser = decoded => {
+export const setProfileLoading = () => {
   return {
-    type: SET_CURRENT_USER,
-    payload: decoded
+    type: PROFILE_LOADING
   };
 };
 
-// log user out
+export const clearCurrentProfile = () => {
+  return {
+    type: CLEAR_CURRENT_PROFILE
+  };
+};
 
-export const logoutUser = () => dispatch => {
-  //remove token
-  localStorage.removeItem("jwtToken");
-  //remove auth
-  setAuthToken(false);
-
-  //set current user to {}
-  dispatch(setCurrentUser({}));
+export const createProfile = (profileData, history) => dispatch => {
+  axios
+    .post("/api/profile", profileData)
+    .then(res => history.push("/dashboard"))
+    .catch(err => {
+      dispatch({ type: GET_ERRORS, payload: err.response.data });
+    });
 };
