@@ -17,7 +17,7 @@ const MONGO_URI = process.env.MONGO_URI;
 const logger = require("./logger");
 // Connect to mongodb
 mongoose
-  .connect(MONGO_URI)
+  .connect(MONGO_URI,{ useNewUrlParser: true } )
   .then(db => logger.info("MongoDB Connected"))
   .catch(err => logger.error(err));
 
