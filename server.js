@@ -10,8 +10,7 @@ const posts = require("./routes/api/posts");
 const profile = require("./routes/api/profile");
 
 const app = express();
-// DB config
-// console.log("MONGO_URI", process.env.MONGO_URI);
+
 const MONGO_URI = process.env.MONGO_URI;
 
 const logger = require("./logger");
