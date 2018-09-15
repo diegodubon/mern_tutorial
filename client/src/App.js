@@ -25,6 +25,7 @@ import AddExperience from "./components/add-credentials/AddExperience";
 import AddEducation from "./components/add-credentials/AddEducation";
 import "./App.css";
 
+import Profile from "./components/profile/Profile";
 if (localStorage.jwtToken) {
 	setAuthToken(localStorage.jwtToken);
 	//get user info
@@ -56,7 +57,17 @@ class App extends Component {
 								component={Register}
 							/>
 							<Route exact path="/login" component={Login} />
-              <Route exact path="/profiles" component={Profiles} />
+							<Route
+								exact
+								path="/profiles"
+								component={Profiles}
+							/>
+							<Route
+								exact
+								path="/profile/:handle"
+								component={Profile}
+							/>
+
 							<Switch>
 								<PrivateRoute
 									exact
