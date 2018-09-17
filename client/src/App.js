@@ -10,7 +10,7 @@ import { Provider } from "react-redux";
 import store from "./store";
 
 import PrivateRoute from "./components/common/PrivateRoute";
-import NavBar from "./components/layout/Navbar";
+/* import NavBar from "./components/layout/Navbar"; */
 import Landing from "./components/layout/Landing";
 import Footer from "./components/layout/Footer";
 import Rtn from "./components/apps/Rtn";
