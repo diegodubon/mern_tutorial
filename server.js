@@ -3,6 +3,8 @@ const mongoose = require("mongoose");
 const dotenv = require("dotenv").config();
 const passport = require("passport");
 const bodyParser = require("body-parser");
+
+const path = require("path")
 var morgan = require("morgan");
 // routes
 const users = require("./routes/api/users");
@@ -30,6 +32,14 @@ app.use(morgan("dev"));
 // body parser middleware
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+
+if(process.env.NODE_ENV){
+  app.use(express.static('client/build'))
+
+  app.get('*',(req,res)=>{
+    res.sendFile(path.resolve(__dirname,'client','build','index.html'))
+  })
+}
 
 app.use("/api/users", users);
 app.use("/api/posts", posts);
