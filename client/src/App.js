@@ -10,7 +10,7 @@ import { Provider } from "react-redux";
 import store from "./store";
 
 import PrivateRoute from "./components/common/PrivateRoute";
-/* import NavBar from "./components/layout/Navbar"; */
+import NavBar from "./components/layout/navbar";
 import Landing from "./components/layout/Landing";
 import Footer from "./components/layout/Footer";
 import Rtn from "./components/apps/Rtn";
@@ -49,7 +49,7 @@ class App extends Component {
 			<Provider store={store}>
 				<Router>
 					<div className="App">
-					{/* 	<NavBar /> */}
+					<NavBar /> 
 
 						<Route exact path="/" component={Landing} />
 						<div className="container">
