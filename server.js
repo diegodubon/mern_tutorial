@@ -4,7 +4,7 @@ const dotenv = require("dotenv").config();
 const passport = require("passport");
 const bodyParser = require("body-parser");
 
-const path = require("path")
+const path = require("path");
 var morgan = require("morgan");
 // routes
 const users = require("./routes/api/users");
@@ -18,9 +18,12 @@ const MONGO_URI = process.env.MONGO_URI;
 const logger = require("./logger");
 // Connect to mongodb
 mongoose
-  .connect(MONGO_URI,{ useNewUrlParser: true } )
-  .then(db => logger.info("MongoDB Connected"))
-  .catch(err => logger.error(err));
+	.connect(
+		MONGO_URI,
+		{ useNewUrlParser: true }
+	)
+	.then(db => logger.info("MongoDB Connected"))
+	.catch(err => logger.error(err));
 
 // passport middlewate
 app.use(passport.initialize());
@@ -33,12 +36,12 @@ app.use(morgan("dev"));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-if(process.env.NODE_ENV){
-  app.use(express.static('client/build'))
+if (process.env.NODE_ENV == 'production') {
+	app.use(express.static("client/build"));
 
-  app.get('*',(req,res)=>{
-    res.sendFile(path.resolve(__dirname,'client','build','index.html'))
-  })
+	app.get("*", (req, res) => {
+		res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
+	});
 }
 
 app.use("/api/users", users);
